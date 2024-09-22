@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://bu1gvf56iefgb"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_yirt3"]
+[ext_resource type="PackedScene" uid="uid://dqbgudmw72162" path="res://interface/Interface.tscn" id="2_scio0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_myh8v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2xykh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ow17"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_rdwth"]
+material = SubResource("StandardMaterial3D_6ow17")
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_yirt3")
+flock_size = 100
+
+[node name="Obstacles" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(50, 200)
+physics_material_override = SubResource("PhysicsMaterial_myh8v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D"]
+shape = SubResource("CircleShape2D_2xykh")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Obstacles/StaticBody2D"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_rdwth")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(514, 309)
+physics_material_override = SubResource("PhysicsMaterial_myh8v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D2"]
+shape = SubResource("CircleShape2D_2xykh")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Obstacles/StaticBody2D2"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_rdwth")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(726, 190)
+physics_material_override = SubResource("PhysicsMaterial_myh8v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D3"]
+shape = SubResource("CircleShape2D_2xykh")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Obstacles/StaticBody2D3"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_rdwth")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(580, 128)
+physics_material_override = SubResource("PhysicsMaterial_myh8v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D4"]
+shape = SubResource("CircleShape2D_2xykh")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Obstacles/StaticBody2D4"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_rdwth")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(888, 473)
+physics_material_override = SubResource("PhysicsMaterial_myh8v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D5"]
+shape = SubResource("CircleShape2D_2xykh")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Obstacles/StaticBody2D5"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_rdwth")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sliders" parent="CanvasLayer" instance=ExtResource("2_scio0")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 1

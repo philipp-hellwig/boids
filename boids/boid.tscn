@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://1pfsaq7kd3hw"]
+
+[ext_resource type="Script" path="res://boids/boid.gd" id="1_ew2gm"]
+[ext_resource type="Script" path="res://boids/ray_container.gd" id="2_l8bsk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cigoo"]
+radius = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_uig8r"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_6ssek"]
+size = Vector3(9, 6, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jsgb6"]
+radius = 78.7571
+
+[node name="Boid" type="CharacterBody2D"]
+position = Vector2(875.451, 393.01)
+scale = Vector2(0.99987, 0.99987)
+velocity = Vector2(0, 33.3333)
+script = ExtResource("1_ew2gm")
+rotation_speed = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cigoo")
+
+[node name="body" type="MeshInstance2D" parent="."]
+mesh = SubResource("SphereMesh_uig8r")
+
+[node name="nose" type="MeshInstance2D" parent="body"]
+position = Vector2(0, 5)
+mesh = SubResource("PrismMesh_6ssek")
+
+[node name="RayContainer" type="Node2D" parent="."]
+script = ExtResource("2_l8bsk")
+angle_between_rays = 0.204
+vision_range = 50
+cone_of_vision = 270
+
+[node name="AvoidanceLine" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+width = 2.0
+default_color = Color(0, 0, 1, 1)
+
+[node name="neighbor_range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbor_range"]
+shape = SubResource("CircleShape2D_jsgb6")
+
+[connection signal="body_entered" from="neighbor_range" to="." method="_on_neighbor_body_entered"]
+[connection signal="body_exited" from="neighbor_range" to="." method="_on_neighbor_body_exited"]

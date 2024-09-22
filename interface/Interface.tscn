@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqbgudmw72162"]
+
+[ext_resource type="Script" path="res://interface/sliders.gd" id="1_3ggqm"]
+
+[node name="Sliders" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+script = ExtResource("1_3ggqm")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -93.0
+offset_bottom = 137.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="SeparationLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Separation: "
+
+[node name="SeparationSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 5.0
+step = 0.01
+
+[node name="AlignmentLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Alignment: "
+
+[node name="AlignmentSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 5.0
+step = 0.01
+
+[node name="CohesionLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Cohesion: "
+
+[node name="CohesionSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 5.0
+step = 0.01
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/SeparationSlider" to="." method="_on_separation_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/AlignmentSlider" to="." method="_on_alignment_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/CohesionSlider" to="." method="_on_cohesion_slider_value_changed"]
